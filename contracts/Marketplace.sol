@@ -113,6 +113,7 @@ contract Marketplace is Ownable {
   /// @dev maps the new address to true using mapping admin
   /// @param _admin The address to be added as an admin
   function addAdmin(address _admin)external onlyOwner stopInEmergency{
+    require(admin[_admin] == false,"The address is an admin already");
     admin[_admin] = true;
     emit logNewAdmin(_admin);
   }
@@ -121,6 +122,7 @@ contract Marketplace is Ownable {
   /// @dev maps the new address to false using mapping admin
   /// @param _admin The address of the admin to be removed
   function removeAdmin(address _admin)external onlyOwner stopInEmergency{
+    require(admin[_admin] == true, "The address is not an admin ");
     admin[_admin] = false;
     emit logAdminRemoved(_admin);
   }
@@ -133,7 +135,7 @@ contract Marketplace is Ownable {
   /// @dev maps the new address to true using mapping storeOwner.
   /// @param _address The address of the store owner to be added.
   function addStoreOwner(address _address)public onlyAdmin stopInEmergency{
-    require(admin[_address]==false);
+    require(admin[_address]==false && storeOwner[_address] == false);
     storeOwner[_address] = true;
     emit logNewStoreOwner(_address);
   }
@@ -145,7 +147,7 @@ contract Marketplace is Ownable {
     storeFronts[storeCount] = storeFront({id:storeCount, name:_name, owner:msg.sender, balance:0});
     allStoreFrontsByUser[msg.sender].push(storeCount);
     emit logNewStoreFront(storeCount,msg.sender);
-    storeCount++;
+    storeCount = storeCount.add(1);
   } 
   /// @notice allows a store owner to withdraw funds from the store's balance.
   /// @param _id The id of the store to withdraw from.
@@ -169,7 +171,7 @@ contract Marketplace is Ownable {
                                       price:_price, quantity:_quantity});
     allProductsByAStore[_storeId].push(productCount);
     emit logNewProduct(productCount, _storeId);
-    productCount++;
+    productCount = productCount.add(1);
   }
 
   /// @notice allows a store owner to remove a product from the store.
@@ -187,7 +189,7 @@ contract Marketplace is Ownable {
     uint[] memory allProducts = allProductsByAStore[_storeId];
     for (uint index =0; index < allProducts.length; index++) {
       if (allProducts[index] == _productId){
-        allProducts[index] = allProducts[allProducts.length - 1];
+        allProducts[index] = allProducts[allProducts.length.sub(1)];
         break;
       }
     }
