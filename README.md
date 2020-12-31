@@ -2,10 +2,11 @@
 **Overview**
 The marketplace contract is located in the contracts folder, it inherits from openzeppellin’s ownable and safe math library. The contract takes charge of buying and selling of products.
 Once the contract is deployed, the owner (the account that deployed the contract) has the following duties  
-I.	Can add and remove admins
-II.	Can add store owners
-III.	Can toggle the contract functionalities’
-IV.	Can destroy the contract and remove it from the blockchain.
+<ul>
+<li>Can add and remove admins
+<li>Can add store owners
+<li>	Can toggle the contract functionalities’
+<li>Can destroy the contract and remove it from the blockchain.</ul>
 Admins added by the owner can also add new store owners.
 Store owners, once added by the owner or admin can then create several stores, add products to the stores, withdraw from the store’s balance, change product price and delete products from a store.
 Shoppers can buy products from any store of their choice.
