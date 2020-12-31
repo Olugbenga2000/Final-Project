@@ -27,10 +27,10 @@ Clone the contract to your local machine using git clone
 Run ganache and make sure it’s running on the port: 7545
 
 **To deploy the contract**
-Run truffle migrate –reset
+Run  truffle migrate –reset<br>
 Once it migrates successfully, we can test the contract by running truffle test
 
 **To run the web interface** 
 Make sure you have metamask plugin installed, switch from the main Ethereum network to ropsten test network. You can get ropsten ether from the <a href="https://faucet.ropsten.be/"> faucet</a>. 	.
-navigate to the project root directory on the command line and run npm run dev, A webpage should open automatically on port 3000, if it doesn’t it simply go to the url localhost:3000 in your browser.
+navigate to the project root directory on the command line and run npm run dev, A webpage should open automatically on port 3000, <br>if it doesn’t it simply go to the url localhost:3000 in your browser.
 Start interacting with the contract.
